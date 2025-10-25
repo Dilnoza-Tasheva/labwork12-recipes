@@ -28,7 +28,7 @@ const UserSchema = new Schema<UserFields, UserModel, UserMethods>({
                 const user = await User.findOne({username: value});
                 return Boolean(!user);
             },
-            message: 'Username already in use'
+            message: 'Username is already in use'
         }
     },
     password: {
@@ -39,17 +39,11 @@ const UserSchema = new Schema<UserFields, UserModel, UserMethods>({
         type: String,
         required: true,
     },
-    avatar: {
+    displayName: {
         type: String,
         required: true,
+        trim: true,
     },
-    role: {
-        type: String,
-        required: true,
-        default: 'user',
-        enum: ['user', 'admin']
-    },
-    displayName: String,
     googleId: String,
 });
 
