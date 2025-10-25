@@ -34,8 +34,6 @@ const usersSlice = createSlice({
             .addCase(register.rejected, (state, { payload }) => {
                 state.registerLoading = false; state.registerError = payload || null;
             });
-
-
         builder
             .addCase(login.pending, (state) => {
                 state.loginLoading = true; state.loginError = null;
@@ -46,8 +44,6 @@ const usersSlice = createSlice({
             .addCase(login.rejected, (state, { payload }) => {
                 state.loginLoading = false; state.loginError = payload || null;
             });
-
-
         builder
             .addCase(googleLogin.pending, (state) => {
                 state.loginLoading = true; state.loginError = null;
@@ -60,11 +56,11 @@ const usersSlice = createSlice({
             });
     },
     selectors: {
-        selectUser: (s) => s.user,
-        selectRegisterLoading: (s) => s.registerLoading,
-        selectRegisterError: (s) => s.registerError,
-        selectLoginLoading: (s) => s.loginLoading,
-        selectLoginError: (s) => s.loginError,
+        selectUser: (state) => state.user,
+        selectRegisterLoading: (state) => state.registerLoading,
+        selectRegisterError: (state) => state.registerError,
+        selectLoginLoading: (state) => state.loginLoading,
+        selectLoginError: (state) => state.loginError,
     }
 });
 
