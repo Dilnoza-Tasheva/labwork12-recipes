@@ -12,7 +12,7 @@ export const register = createAsyncThunk<User, RegisterMutation, { rejectValue: 
             formData.append('username', payload.username);
             formData.append('password', payload.password);
             formData.append('displayName', payload.displayName);
-            const { data } = await axiosApi.post<User>('/users', formData);
+            const { data } = await axiosApi.post<User>('/users', payload);
             return data;
         } catch (e) {
             if (isAxiosError(e) && e.response?.status === 400) return rejectWithValue(e.response.data);

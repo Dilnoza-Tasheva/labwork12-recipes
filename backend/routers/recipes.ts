@@ -34,11 +34,14 @@ recipesRouter.post('/', auth, recipeImageUpload.single('image'), async (req, res
         if (!req.body.title || !req.body.text || !req.file) {
             return res.status(400).send({error: 'All fields are required'});
         }
+
+        const filename = req.file ? req.file.filename : null;
+        const image = filename ? `images/recipes/${filename}` : null;
         const recipe = await Recipe.create({
             user: (req as any).user._id,
             title: req.body.title,
             text: req.body.text,
-            image: req.file ? req.file.filename : null
+            image,
         });
         res.send(recipe);
     } catch (e) {

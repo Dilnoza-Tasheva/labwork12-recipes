@@ -8,6 +8,8 @@ import {selectUser} from "./features/users/usersSlice.ts";
 import RecipesList from "./features/recipes/RecipesList.tsx";
 import ProtectedRoute from "./components/UI/ProtectedRoute/ProtectedRoute.tsx";
 import NewRecipe from "./features/recipes/NewRecipe.tsx";
+import RecipeDetails from "./features/recipes/RecipeDetails.tsx";
+import AuthorRecipes from "./features/recipes/AuthorRecipes.tsx";
 
 const App = () => {
     const user = useAppSelector(selectUser);
@@ -18,6 +20,8 @@ const App = () => {
             <Container maxWidth="xl" component="main">
                 <Routes>
                     <Route path="/" element={<RecipesList />} />
+                    <Route path="/recipes/:id" element={<RecipeDetails />} />
+                    <Route path="/authors/:userId" element={<AuthorRecipes />} />
                     <Route path="/recipes/new" element={<ProtectedRoute isAllowed={Boolean(user)}><NewRecipe /></ProtectedRoute>} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />

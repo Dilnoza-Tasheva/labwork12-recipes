@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { fetchRecipes } from './recipesThunk';
 import { selectRecipes, selectRecipesLoading } from './recipesSlice';
-import { Alert, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Grid, Stack, Typography } from '@mui/material';
+import { Alert, Card, CardActionArea, CardContent, CardMedia, CircularProgress, Stack, Typography, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
 import {API_URL} from "../../constants.ts";
@@ -21,7 +21,7 @@ const RecipesList = () => {
             {items.map((r) => {
                 const img = r.image ? `${API_URL}/${r.image}` : '';
                 return (
-                    <Grid item key={r._id} xs={12} sm={6} md={4} lg={3}>
+                    <Grid key={r._id} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
                         <Card>
                             <CardActionArea component={Link} to={`/recipes/${r._id}`}>
                                 {img && <CardMedia sx={{ height: 180 }} image={img} />}
